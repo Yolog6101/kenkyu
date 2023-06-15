@@ -10,8 +10,7 @@ import glob
 import os
 
 if __name__=='__main__':
-    filelist=glob.glob(sys.argv[1]+'/*.'+sys.argv[2])
-    gccount=0#グレースケール化した枚数
+    filelist=glob.glob(sys.argv[1]+'/*.'+sys.argv[2])#sys.argv[1]内の拡張子sys.argv[2]のファイルを入手
     
     print("GRAYSCALE?(Yes=1,No=0)")
     mode=2
@@ -25,12 +24,10 @@ if __name__=='__main__':
             img=cv2.imread(file)
             img=cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
             cv2.imwrite(file,img)
-            gccount+=1
 
         os.rename(file,sys.argv[3]+i_str+'.'+sys.argv[2])#移動
     
     print("Completed!")
-    print("GRAYSCALE/TOTAL={}/{}".format(gccount,len(filelist)))
 
             
 
