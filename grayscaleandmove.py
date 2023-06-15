@@ -16,9 +16,10 @@ if __name__=='__main__':
     print("GRAYSCALE?(Yes=1,No=0)")
     mode=2
     while(mode!=0 and mode!=1):
-        mode=input()#グレースケール化する(1)かしないか(0)
+        mode=int(input())#グレースケール化する(1)かしないか(0)
 
     for i,file in enumerate(filelist):
+        print("NOW->{}".format(file))
         i_str=str(i+int(sys.argv[4])).zfill(6)#連番6桁化
         if mode==1:#グレースケール化する場合のみ以下の処理をする
             img=cv2.imread(file)
@@ -26,7 +27,7 @@ if __name__=='__main__':
             cv2.imwrite(file,img)
             gccount+=1
 
-        os.rename(file,sys.argv[3]+i_str+sys.argv[2])#移動
+        os.rename(file,sys.argv[3]+i_str+'.'+sys.argv[2])#移動
     
     print("Completed!")
     print("GRAYSCALE/TOTAL={}/{}".format(gccount,len(filelist)))
